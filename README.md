@@ -30,6 +30,7 @@
 - Schema: [`schemas/compliance-as-code-v0.1.json`](schemas/compliance-as-code-v0.1.json)
 - Example: [`examples/compliance-evidence-v0.1.example.json`](examples/compliance-evidence-v0.1.example.json)
 - Fixtures: [`fixtures/valid/compliance-evidence-v0.1.valid.json`](fixtures/valid/compliance-evidence-v0.1.valid.json), [`fixtures/invalid/compliance-evidence-v0.1.invalid.json`](fixtures/invalid/compliance-evidence-v0.1.invalid.json)
+- Receipt: [`receipts/compliance-as-code-v0.1-packet-receipt.md`](receipts/compliance-as-code-v0.1-packet-receipt.md)
 
 ## Status
 

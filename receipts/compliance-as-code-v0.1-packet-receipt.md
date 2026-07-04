@@ -3,7 +3,7 @@
 ## Packet identity
 
 - Repo: `compliance-as-code`
-- Packet folder: `seed -> v0.1-draft`
+- Packet status: `seed -> v0.1-draft`
 - Scope source: `compliance-as-code #4`
 - PR target: `chore/codex/compliance-as-code-v0-1-packet-main` (this change set)
 
@@ -31,4 +31,4 @@
 
 - Directory contract check: `docs/`, `schemas/`, `examples/`, `fixtures/valid/`, `fixtures/invalid/`, `receipts/`
 - Structural review against `docs/as-code/pr-checklist.md` and `hummbl-dev#70`
-- Negative fixture includes invalid version, empty authority boundary, expired obligations, and missing receipt fields.
+- Negative fixture includes invalid version, empty authority boundary, required evidence missing for an enabled control, and empty receipt fields.
