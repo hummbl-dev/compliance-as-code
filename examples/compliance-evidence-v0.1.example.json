@@ -1,0 +1,58 @@
+{
+  "schemaVersion": "v0.1",
+  "packetStatus": "v0.1-draft",
+  "complianceManifest": {
+    "id": "compliance-as-code/audit-readiness-v1",
+    "title": "Audit readiness evidence packet",
+    "version": 1,
+    "scope": "agent-repo-delivery",
+    "description": "Minimal compliance record for controls, evidence links, and review windows."
+  },
+  "authority": {
+    "owner": "compliance-as-code",
+    "canActOnBehalfOf": ["compliance_owner", "engineering_owner"]
+  },
+  "controls": [
+    {
+      "id": "audit-log-retention",
+      "name": "Audit log retention",
+      "controlType": "process",
+      "status": "required",
+      "evidenceRequired": true,
+      "evidence": [
+        "observability/log-retention-policy.md"
+      ]
+    },
+    {
+      "id": "review-evidence",
+      "name": "Review evidence packet",
+      "controlType": "review",
+      "status": "required",
+      "evidenceRequired": true,
+      "evidence": [
+        "receipts/review-evidence.md"
+      ],
+      "exceptions": ["policy-exception"]
+    }
+  ],
+  "obligationPolicy": {
+    "enabled": true,
+    "maxAgeDays": 90,
+    "reviewIntervalDays": 30,
+    "governedBy": "compliance-owner"
+  },
+  "receiptRequirements": {
+    "source": "source-receipt.v0.1",
+    "control": "control-receipt.v0.1",
+    "evidence": "evidence-receipt.v0.1",
+    "review": "review-receipt.v0.1",
+    "exception": "exception-receipt.v0.1",
+    "finalState": "final-state-receipt.v0.1"
+  },
+  "adjacentRepos": [
+    "governance-as-code",
+    "policy-as-code",
+    "security-as-code",
+    "observability-as-code"
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "v0.1",
+  "packetStatus": "validated-example",
+  "complianceManifest": {
+    "id": "compliance-as-code/audit-readiness-v1",
+    "title": "Invalid audit evidence packet",
+    "version": 0,
+    "scope": "agent-repo-delivery"
+  },
+  "authority": {
+    "owner": "compliance-as-code",
+    "canActOnBehalfOf": []
+  },
+  "controls": [
+    {
+      "id": "audit-log-retention",
+      "name": "Audit log retention",
+      "controlType": "process",
+      "status": "required",
+      "evidenceRequired": true
+    }
+  ],
+  "obligationPolicy": {
+    "enabled": true,
+    "maxAgeDays": 0,
+    "reviewIntervalDays": 0
+  },
+  "receiptRequirements": {
+    "source": "",
+    "control": "control-receipt.v0.1",
+    "evidence": "evidence-receipt.v0.1",
+    "review": "review-receipt.v0.1",
+    "exception": "",
+    "finalState": "final-state-receipt.v0.1"
+  }
+}

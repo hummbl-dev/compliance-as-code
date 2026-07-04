@@ -1,0 +1,185 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/hummbl-dev/compliance-as-code/7e174a5c610a428d3d926417adfb981772bd32d0/schemas/compliance-as-code-v0.1.json",
+  "title": "Compliance-as-Code v0.1 Packet",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "packetStatus",
+    "complianceManifest",
+    "authority",
+    "controls",
+    "receiptRequirements"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": "string",
+      "const": "v0.1"
+    },
+    "packetStatus": {
+      "type": "string",
+      "enum": ["seed", "v0.1-draft", "validated-example", "v0.1-packet"]
+    },
+    "complianceManifest": {
+      "type": "object",
+      "required": ["id", "title", "version", "scope"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z0-9][a-z0-9\\-]*/[a-z0-9][a-z0-9\\-]*$"
+        },
+        "title": {
+          "type": "string"
+        },
+        "version": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "scope": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "authority": {
+      "type": "object",
+      "required": ["owner", "canActOnBehalfOf"],
+      "properties": {
+        "owner": {
+          "type": "string"
+        },
+        "canActOnBehalfOf": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "controls": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["id", "name", "controlType", "status", "evidenceRequired"],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z0-9\\-]+$"
+          },
+          "name": {
+            "type": "string"
+          },
+          "controlType": {
+            "type": "string",
+            "enum": ["technical", "process", "review", "documentation"]
+          },
+          "status": {
+            "type": "string",
+            "enum": ["required", "optional", "not-applicable"]
+          },
+          "evidenceRequired": {
+            "type": "boolean"
+          },
+          "evidence": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "exceptions": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "additionalProperties": false,
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "evidenceRequired": {
+                  "const": true
+                }
+              }
+            },
+            "then": {
+              "required": ["evidence"],
+              "properties": {
+                "evidence": {
+                  "type": "array",
+                  "minItems": 1
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    "obligationPolicy": {
+      "type": "object",
+      "required": ["enabled", "maxAgeDays", "reviewIntervalDays"],
+      "properties": {
+        "enabled": {
+          "type": "boolean"
+        },
+        "maxAgeDays": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "reviewIntervalDays": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "governedBy": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "receiptRequirements": {
+      "type": "object",
+      "required": ["source", "control", "evidence", "review", "exception", "finalState"],
+      "properties": {
+        "source": {
+          "type": "string",
+          "minLength": 1
+        },
+        "control": {
+          "type": "string",
+          "minLength": 1
+        },
+        "evidence": {
+          "type": "string",
+          "minLength": 1
+        },
+        "review": {
+          "type": "string",
+          "minLength": 1
+        },
+        "exception": {
+          "type": "string",
+          "minLength": 1
+        },
+        "finalState": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "additionalProperties": false
+    },
+    "adjacentRepos": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "additionalProperties": false
+}
